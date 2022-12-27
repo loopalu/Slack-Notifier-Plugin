@@ -1,0 +1,34 @@
+<idea-plugin>
+    <id>ee.loopalu.slacknotifier</id>
+    <name>Slack Notifier</name>
+    <version>0.1</version>
+    <vendor email="aivar.loopalu@gmail.com" url="https://github.com/loopalu">https://github.com/loopalu</vendor>
+
+    <description><![CDATA[
+      This plugin sends a Slack notification when a build run / test run finishes.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <ul>
+        <li>0.1 - Plugin listens for events sent by executing different commands from Gradle window and saves the output to a text file.
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <externalSystemTaskNotificationListener implementation="ee.loopalu.slacknotifier.EventListener"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
