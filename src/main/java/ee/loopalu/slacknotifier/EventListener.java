@@ -3,9 +3,9 @@ package ee.loopalu.slacknotifier;
 import com.intellij.openapi.externalSystem.model.ProjectSystemId;
 import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskId;
 import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskNotificationListenerAdapter;
+import ee.loopalu.slacknotifier.slack.SlackClient;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class EventListener extends ExternalSystemTaskNotificationListenerAdapter {
@@ -54,10 +54,7 @@ public class EventListener extends ExternalSystemTaskNotificationListenerAdapter
 
     private void writeOutput(String output) {
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
-            myWriter.write(output);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            SlackClient.postSlackMessage(":alert: "+output+ " :alert: ");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

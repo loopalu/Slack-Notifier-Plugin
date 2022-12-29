@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>ee.loopalu.slacknotifier</id>
     <name>Slack Notifier</name>
-    <version>0.1</version>
+    <version>0.2</version>
     <vendor email="aivar.loopalu@gmail.com" url="https://github.com/loopalu">https://github.com/loopalu</vendor>
 
     <description><![CDATA[
@@ -10,7 +10,8 @@
 
     <change-notes><![CDATA[
       <ul>
-        <li>0.1 - Plugin listens for events sent by executing different commands from Gradle window and saves the output to a text file.
+        <li>0.1 - Plugin listens for events sent by executing different commands from Gradle window and saves the output to a text file.</li>
+        <li>0.2 - Plugin listens for events sent by executing different commands from Gradle window and sends the output to Slack channel. Webhook and channel name has to be hardcoded.</li>
       </ul>
     ]]>
     </change-notes>
