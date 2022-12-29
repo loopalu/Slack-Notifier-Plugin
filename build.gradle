@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ee.loopalu.slacknotifier'
-version '0.2'
+version '1.0'
 
 repositories {
     mavenCentral()

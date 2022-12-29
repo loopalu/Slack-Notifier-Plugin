@@ -4,14 +4,18 @@ import com.intellij.openapi.externalSystem.model.ProjectSystemId;
 import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskId;
 import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskNotificationListenerAdapter;
 import ee.loopalu.slacknotifier.slack.SlackClient;
+import org.apache.commons.lang3.ObjectUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+
+import static ee.loopalu.slacknotifier.configuration.SettingsManager.getInstance;
 
 public class EventListener extends ExternalSystemTaskNotificationListenerAdapter {
 
     private final ProjectSystemId SYSTEM_ID = new ProjectSystemId("GRADLE");
     private StringBuilder builder = new StringBuilder();
+    private static final Boolean slackNotificationsEnabled = ObjectUtils.firstNonNull(getInstance().getState().slackNotificationsEnabled, false);
 
     @Override
     public void onStart(@NotNull ExternalSystemTaskId id, String workingDir) {
@@ -37,8 +41,9 @@ public class EventListener extends ExternalSystemTaskNotificationListenerAdapter
     public void onEnd(@NotNull ExternalSystemTaskId id) {
         if (SYSTEM_ID.equals(id.getProjectSystemId())) {
             String output = builder.toString();
-            System.out.println(output);
-            writeOutput(output);
+            if (slackNotificationsEnabled) {
+                postMessage(output);
+            }
             builder = new StringBuilder();
             super.onEnd(id);
         }
@@ -52,7 +57,7 @@ public class EventListener extends ExternalSystemTaskNotificationListenerAdapter
         }
     }
 
-    private void writeOutput(String output) {
+    private void postMessage(String output) {
         try {
             SlackClient.postSlackMessage(":alert: "+output+ " :alert: ");
         } catch (IOException e) {

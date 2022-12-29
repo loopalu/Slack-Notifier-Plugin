@@ -1,5 +1,7 @@
 package ee.loopalu.slacknotifier.slack;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -12,15 +14,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import static ee.loopalu.slacknotifier.configuration.SettingsManager.getInstance;
+
 public class SlackClient {
 
-//    private static final String slack_token = System.getenv("SLACK_TOKEN");
-
-    private static final String webhook = "https://hooks.slack.com/services/XXXXX/YYYYY/ZZZZZZ";
-
-//    private static final String slack_channel_id = System.getenv("SLACK_CHANNEL_ID");
-
-    private static final String channelName = "SLACK_CHANNEL_ID";
+    private static final String webhook = StringUtils.firstNonBlank(getInstance().getState().webhook, "");
+    private static final String channelName = StringUtils.firstNonBlank(getInstance().getState().channelId, "");
 
     public static void postSlackMessage(String message) throws IOException {
         String input = "payload=" + URLEncoder.encode(getPayloadMessage(message), StandardCharsets.UTF_8);
