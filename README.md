@@ -4,7 +4,7 @@ IntelliJ plugin for sending notifications to Slack when build finishes or test r
 ## How to install the plugin and run it
 There are two ways for installing the plugin:
 <ul>
-    <li>Install the plugin manually from File > Settings > Plugins > gear icon > Install Plugin From Disk... > choose Slack-Notifier-0.3.jar</li>
+    <li>Install the plugin manually from File > Settings > Plugins > gear icon > Install Plugin From Disk... > choose Slack-Notifier-1.1.jar</li>
     <li>Build the plugin with `gradle buildPlugin` and then install the plugin manually following first option. Plugin jar file will be in /build/distributions folder.</li>
 </ul>
 
