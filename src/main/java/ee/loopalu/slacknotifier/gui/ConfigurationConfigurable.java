@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class ConfigurationConfigurable extends ConfigurableBase<PluginConfigurationUI, SettingsManager.Settings> {
 
     protected ConfigurationConfigurable() {
-        super("slacknotifier.settings", "Slack Notifier settings", null);
+        super("slacknotifier.settings", "Slack Notifier Settings", null);
     }
 
     @NotNull

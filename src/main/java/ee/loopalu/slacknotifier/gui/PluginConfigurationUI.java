@@ -29,7 +29,7 @@ public class PluginConfigurationUI implements ConfigurableUi<Settings> {
         mainPanel.setLayout(new VerticalFlowLayout(true, false));
 
         mainPanel.add(FormBuilder.createFormBuilder()
-                .addComponent(new TitledSeparator("Slack Notifier settings"))
+                .addComponent(new TitledSeparator("Slack Notifier Settings"))
                 .addComponent(new JBLabel("<html>The webhook and channel ID for Slack. IDE restart will be required for any changes to take effect.</html>"))
                 .addLabeledComponent("Webhook", webhookField)
                 .addLabeledComponent("Channel ID", channelIdField)
