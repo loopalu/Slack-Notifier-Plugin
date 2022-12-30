@@ -70,11 +70,11 @@ public class SlackClient {
     private static String readInputStreamToString(HttpURLConnection connection) {
         String result;
         StringBuilder builder = new StringBuilder();
-        InputStream is;
+        InputStream inputStream;
 
         try {
-            is = new BufferedInputStream(connection.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            inputStream = new BufferedInputStream(connection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             String inputLine;
             while ((inputLine = reader.readLine()) != null) {
                 builder.append(inputLine);
