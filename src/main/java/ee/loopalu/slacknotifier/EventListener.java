@@ -41,7 +41,7 @@ public class EventListener extends ExternalSystemTaskNotificationListenerAdapter
     public void onEnd(@NotNull ExternalSystemTaskId id) {
         if (SYSTEM_ID.equals(id.getProjectSystemId())) {
             String output = builder.toString();
-            if (slackNotificationsEnabled) {
+            if (slackNotificationsEnabled && output.contains("Task :test")) {
                 postMessage(output);
             }
             builder = new StringBuilder();

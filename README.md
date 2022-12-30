@@ -22,7 +22,7 @@ For changes to take effect you have to restart your IDE.
 ## Done
 
 <ul>
-	<li>Plugin listens to Gradle events sent from Gradle system window and sends the output to a Slack channel.</li>
+	<li>Plugin listens to Gradle build and test run events sent from Gradle system window and sends the output to a Slack channel.</li>
     <li>Plugin is configurable from IDE settings.</li>
 </ul>
 
@@ -30,7 +30,6 @@ For changes to take effect you have to restart your IDE.
 ## To do
 
 <ul>
-    <li>Filter out all other Gradle outputs not relevant to test or build events.</li>
     <li>Format output.</li>
     <li>Restart EventListener upon configuration changes to apply changes without restarting IDE.</li>
     <li>Add an option to listen also to Maven events.</li>

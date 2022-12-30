@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>ee.loopalu.slacknotifier</id>
     <name>Slack Notifier</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="aivar.loopalu@gmail.com" url="https://github.com/loopalu/Slack-Notifier-Plugin">https://github.com/loopalu/Slack-Notifier-Plugin</vendor>
 
     <description><![CDATA[
@@ -10,15 +10,16 @@
 
     <change-notes><![CDATA[
       <ul>
-        <li>0.1 - Plugin listens for events sent by executing different commands from Gradle window and saves the output to a text file.</li>
-        <li>0.2 - Plugin listens for events sent by executing different commands from Gradle window and sends the output to Slack channel. Webhook and channel name has to be hardcoded.</li>
+        <li>1.1 - Plugin responds now only to build and test run events. Other events are filtered out.</li>
         <li>1.0 - Plugin has configurable settings window. It is ready to be used with Gradle events.</li>
+        <li>0.2 - Plugin listens for events sent by executing different commands from Gradle window and sends the output to Slack channel. Webhook and channel name has to be hardcoded.</li>
+        <li>0.1 - Plugin listens for events sent by executing different commands from Gradle window and saves the output to a text file.</li>
       </ul>
     ]]>
     </change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="211.0"/>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
