@@ -32,39 +32,42 @@ public class SlackClient {
             connection.setDoOutput(true);
 
             DataOutputStream outputStream = new DataOutputStream (connection.getOutputStream ());
-            outputStream.writeBytes (input);
-            outputStream.flush ();
-            outputStream.close ();
+            outputStream.writeBytes(input);
+            outputStream.flush();
+            outputStream.close();
 
             if (connection.getResponseCode() == 200 && readInputStreamToString(connection).equals("ok")) {
                 System.out.println("All OK");
             } else {
-                int status_code = connection.getResponseCode();
-                String title = "";
-                String content = "";
-                if (status_code == 400) {
-                    title = "invalid_payload";
-                    content = "the data sent in your request cannot be understood as presented; verify your content body matches your content type and is structurally valid.";
-                } else if (status_code == 403) {
-                    title = "action_prohibited";
-                    content = "the team associated with your request has some kind of restriction on the webhook posting in this context.";
-                } else if (status_code == 404) {
-                    title = "channel_not_found";
-                    content = "the channel associated with your request does not exist.";
-                } else if (status_code == 410) {
-                    title = "channel_is_archived";
-                    content = "the channel has been archived and doesn't accept further messages, even from your incoming webhook.";
-                } else if (status_code == 500) {
-                    title = "rollup_error";
-                    content = "something strange and unusual happened that was likely not your fault at all.";
-                }
-
-                System.out.println("Error: " + title + ": " + content);
+                handleFailure(connection);
             }
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void handleFailure(HttpURLConnection connection) throws IOException {
+        int status_code = connection.getResponseCode();
+        String title = "";
+        String content = "";
+        if (status_code == 400) {
+            title = "invalid_payload";
+            content = "the data sent in your request cannot be understood as presented; verify your content body matches your content type and is structurally valid.";
+        } else if (status_code == 403) {
+            title = "action_prohibited";
+            content = "the team associated with your request has some kind of restriction on the webhook posting in this context.";
+        } else if (status_code == 404) {
+            title = "channel_not_found";
+            content = "the channel associated with your request does not exist.";
+        } else if (status_code == 410) {
+            title = "channel_is_archived";
+            content = "the channel has been archived and doesn't accept further messages, even from your incoming webhook.";
+        } else if (status_code == 500) {
+            title = "rollup_error";
+            content = "something strange and unusual happened that was likely not your fault at all.";
+        }
+
+        System.out.println("Error: " + title + ": " + content);
     }
 
     private static String readInputStreamToString(HttpURLConnection connection) {
@@ -89,7 +92,6 @@ public class SlackClient {
     }
 
     public static String getPayloadMessage(String message) {
-
         message = message.replace("\\", "\\\\").replace("\"", "\\\"");
 
         String payload = "{" +
