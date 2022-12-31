@@ -58,16 +58,15 @@ public class SlackClient {
             content = "the team associated with your request has some kind of restriction on the webhook posting in this context.";
         } else if (status_code == 404) {
             title = "channel_not_found";
-            content = "the channel associated with your request does not exist.";
+            content = "the Slack channel and/or webhook associated with your request does not exist.";
         } else if (status_code == 410) {
             title = "channel_is_archived";
-            content = "the channel has been archived and doesn't accept further messages, even from your incoming webhook.";
+            content = "the Slack channel has been archived and doesn't accept further messages, even from your incoming webhook.";
         } else if (status_code == 500) {
             title = "rollup_error";
             content = "something strange and unusual happened that was likely not your fault at all.";
         }
-
-        System.out.println("Error: " + title + ": " + content);
+        throw new RuntimeException("Status code: " + status_code +" Error: " + title + ": " + content);
     }
 
     private static String readInputStreamToString(HttpURLConnection connection) {

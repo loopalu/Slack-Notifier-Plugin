@@ -11,8 +11,8 @@ import com.intellij.util.ui.FormBuilder;
 import ee.loopalu.slacknotifier.configuration.SettingsManager.Settings;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.JPanel;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 public class PluginConfigurationUI implements ConfigurableUi<Settings> {
     @SuppressWarnings("rawtypes")
